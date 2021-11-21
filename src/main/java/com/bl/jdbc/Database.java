@@ -29,7 +29,7 @@ public class Database {
             connection.close();
         }
         catch (SQLException e) {
-            System.out.println("SQLException:" + e.getMessage());
+            System.out.println("SQLException: " + e.getMessage());
         }
     }
 
