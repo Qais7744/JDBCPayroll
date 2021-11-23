@@ -56,5 +56,17 @@ public class EmployeePayrollTest {
         Map<String, Integer> countByGender = employeePayRollService.readCountSalaryByGender();
         Assert.assertTrue(countByGender.get("M").equals(2) && countByGender.get("F").equals(2));
     }
+
+    @Test
+    public void givenNewEmployee_WhenAdded_ShouldSyncWithDB(){
+        EmployeePayrollService employeePayRollService = new EmployeePayrollService();
+        employeePayRollService.readEmployeePayroll();
+        employeePayRollService.addEmployeePayroll("Mark", 8000000.00, LocalDate.now(), "M");
+//        List<EmployeePayrollData> employeePayrollData = employeePayRollService.readEmployeePayroll();
+//        for (EmployeePayrollData data : employeePayrollData)
+//            System.out.println(data);
+        boolean result = employeePayRollService.checkEmployeePayrollInSyncWithDB("Mark");
+        Assert.assertTrue(result);
+    }
 }
 

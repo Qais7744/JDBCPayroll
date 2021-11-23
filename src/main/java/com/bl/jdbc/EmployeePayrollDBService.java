@@ -24,10 +24,10 @@ public class EmployeePayrollDBService {
     public List<EmployeePayrollData> readData() {
         List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM employee_payroll_data;";
+            String string = "SELECT * FROM employee_payroll_data;";
             Connection connection = this.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
+            ResultSet result = statement.executeQuery(string);
             employeePayrollList = this.getEmployeePayrollData(result);
 
             connection.close();
@@ -90,10 +90,10 @@ public class EmployeePayrollDBService {
     }
 
     private int updateEmployeeDataUsingStatement(String name, double salary) {
-        String sql = String.format("update employee_payroll_data set salary = %.2f where name = '%s';", salary, name);
+        String string = String.format("update employee_payroll_data set salary = %.2f where name = '%s';", salary, name);
         try (Connection connection = this.getConnection()) {
             Statement statement = connection.createStatement();
-            return statement.executeUpdate(sql);
+            return statement.executeUpdate(string);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,8 +103,8 @@ public class EmployeePayrollDBService {
     private void prepareStatementForEmployeeData() {
         try {
             Connection connection = this.getConnection();
-            String sql = "SELECT * from employee_payroll_data WHERE name = ?";
-            employeePayrollDataStatement = connection.prepareStatement(sql);
+            String string = "SELECT * from employee_payroll_data WHERE name = ?";
+            employeePayrollDataStatement = connection.prepareStatement(string);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,11 +115,11 @@ public class EmployeePayrollDBService {
     }
 
     public Map<String, Double> getAverageSalaryByGender() {
-        String sql = "select gender, AVG(salary) as avg_salary FROM employee_payroll_data GROUP BY gender";
+        String string = "select gender, AVG(salary) as avg_salary FROM employee_payroll_data GROUP BY gender";
         Map<String, Double> genderToAverageSalaryMap = new HashMap<>();
         try (Connection connection = this.getConnection()) {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(string);
             while (resultSet.next()) {
                 String gender = resultSet.getString("gender");
                 double salary = resultSet.getDouble("avg_salary");
@@ -132,11 +132,11 @@ public class EmployeePayrollDBService {
     }
 
     public Map<String, Integer> getCountByGender() {
-        String sql = "select gender, count(gender) as count from employee_payroll_data GROUP BY gender";
+        String string = "select gender, count(gender) as count from employee_payroll_data GROUP BY gender";
         Map<String, Integer> genderToAverageSalaryMap = new HashMap<>();
         try (Connection connection = this.getConnection()) {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(string);
             while (resultSet.next()) {
                 String gender = resultSet.getString("gender");
                 int count = resultSet.getInt("count");
@@ -146,6 +146,26 @@ public class EmployeePayrollDBService {
             e.printStackTrace();
         }
         return genderToAverageSalaryMap;
+    }
+
+    public EmployeePayrollData addEmployeeToPayroll(String name, double salary, LocalDate startDate, String gender) {
+        int employeeId = -1;
+        EmployeePayrollData payrollData = null;
+        String string = String.format("INSERT INTO employee_payroll_data(name, salary, start, gender)" +
+                                      " values ( '%s', '%s', %s, '%s')", name, gender, salary, Date.valueOf(startDate));
+        try (Connection connection = this.getConnection()) {
+            Statement statement = connection.createStatement();
+            int rowAffected = statement.executeUpdate(string, statement.RETURN_GENERATED_KEYS);
+            if (rowAffected == 1) {
+                ResultSet resultSet = statement.getGeneratedKeys();
+                if (resultSet.next())
+                    employeeId = resultSet.getInt(1);
+            }
+            payrollData = new EmployeePayrollData(employeeId, name, salary, startDate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return payrollData;
     }
 
     public Connection getConnection() {
