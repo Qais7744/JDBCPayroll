@@ -13,7 +13,6 @@ public class EmployeePayrollTest {
         List<EmployeePayrollData> employeePayrollData = employeePayrollService.readEmployeePayroll();
         System.out.println(employeePayrollData);
         Assert.assertEquals(3, employeePayrollData.size());
-
     }
 }
 

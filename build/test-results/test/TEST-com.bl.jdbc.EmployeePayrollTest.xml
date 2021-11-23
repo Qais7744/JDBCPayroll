@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.jdbc.EmployeePayrollTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-23T06:34:36" hostname="LAPTOP-LTNNVO58" time="0.256">
+<testsuite name="com.bl.jdbc.EmployeePayrollTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-23T09:31:01" hostname="LAPTOP-LTNNVO58" time="0.469">
   <properties/>
-  <testcase name="givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount" classname="com.bl.jdbc.EmployeePayrollTest" time="0.256"/>
+  <testcase name="givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount" classname="com.bl.jdbc.EmployeePayrollTest" time="0.469"/>
   <system-out><![CDATA[Connection to databasejdbc:mysql://localhost:3306/payroll_service
 Driver loaded
 Connection is successfulcom.mysql.cj.jdbc.ConnectionImpl@1eca2e7e

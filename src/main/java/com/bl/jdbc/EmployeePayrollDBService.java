@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeePayrollDBService {
-    public List<EmployeePayrollData> readData() throws SQLException {
+    public List<EmployeePayrollData> readData() {
         List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
-        try {
+        try (Connection connection = this.getConnection()) {
             String sql = "SELECT * FROM employee_payroll_data;";
-            Connection connection = this.getConnection();
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(sql);
             int count = 0;
@@ -22,7 +21,6 @@ public class EmployeePayrollDBService {
                 LocalDate start = result.getDate("start").toLocalDate();
                 employeePayrollList.add(new EmployeePayrollData(id, name, salary, start));
             }
-            connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
