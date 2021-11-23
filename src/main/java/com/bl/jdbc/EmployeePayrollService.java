@@ -1,6 +1,8 @@
 package com.bl.jdbc;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeePayrollService {
     private List<EmployeePayrollData> employeePayRollList;
@@ -11,7 +13,6 @@ public class EmployeePayrollService {
     }
 
     public List<EmployeePayrollData> readEmployeePayroll() {
-        this.employeePayRollList = new EmployeePayrollDBService().readData();
         this.employeePayRollList = EmployeePayrollDBService.getInstance().readData();
         return employeePayRollList;
     }
@@ -33,5 +34,17 @@ public class EmployeePayrollService {
     public boolean checkEmployeePayrollInSyncWithDB(String name) {
         List<EmployeePayrollData> employeePayrollDataList = employeePayrollDBService.getEmployeePayrollData(name);
         return employeePayrollDataList.get(0).equals(getEmployeePayRollData(name));
+    }
+
+    public List<EmployeePayrollData> readEmployeePayRollForDateRange(LocalDate startDate, LocalDate endDate) {
+        return employeePayrollDBService.getEmployeeForDateRange(startDate, endDate);
+    }
+
+    public Map<String, Double> readAverageSalaryByGender() {
+        return employeePayrollDBService.getAverageSalaryByGender();
+    }
+
+    public Map<String, Integer> readCountSalaryByGender() {
+        return employeePayrollDBService.getCountByGender();
     }
 }
