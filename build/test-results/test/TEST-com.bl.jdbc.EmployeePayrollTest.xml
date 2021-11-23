@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.jdbc.EmployeePayrollTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-23T09:31:01" hostname="LAPTOP-LTNNVO58" time="0.469">
+<testsuite name="com.bl.jdbc.EmployeePayrollTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-23T09:48:43" hostname="LAPTOP-LTNNVO58" time="0.642">
   <properties/>
-  <testcase name="givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount" classname="com.bl.jdbc.EmployeePayrollTest" time="0.469"/>
+  <testcase name="givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount" classname="com.bl.jdbc.EmployeePayrollTest" time="0.642"/>
   <system-out><![CDATA[Connection to databasejdbc:mysql://localhost:3306/payroll_service
 Driver loaded
 Connection is successfulcom.mysql.cj.jdbc.ConnectionImpl@1eca2e7e
-[EmployeePayrollData{id=1, name='Bill', salary=1000000.0, startDate=2018-01-03}, EmployeePayrollData{id=2, name='Terisa', salary=2000000.0, startDate=2019-05-21}, EmployeePayrollData{id=3, name='Charliy', salary=3000000.0, startDate=2020-05-21}]
+EmployeePayrollData{id=1, name='Bill', salary=1000000.0, startDate=2018-01-03}
+EmployeePayrollData{id=2, name='Terisa', salary=2000000.0, startDate=2019-05-21}
+EmployeePayrollData{id=3, name='Charliy', salary=3000000.0, startDate=2020-05-21}
 ]]></system-out>
   <system-err><![CDATA[Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
 ]]></system-err>
