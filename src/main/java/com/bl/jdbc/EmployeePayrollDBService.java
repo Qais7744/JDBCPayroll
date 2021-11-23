@@ -28,7 +28,7 @@ public class EmployeePayrollDBService {
             Connection connection = this.getConnection();
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(sql);
-            employeePayrollList = this.getEmployeePayrollList(result);
+            employeePayrollList = this.getEmployeePayrollData(result);
 
             connection.close();
 
@@ -63,22 +63,6 @@ public class EmployeePayrollDBService {
                 employeePayrollList.add(new EmployeePayrollData(id, name, salary, start));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return employeePayrollList;
-    }
-
-    private List<EmployeePayrollData> getEmployeePayrollList(ResultSet result) {
-        List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
-        try {
-            while (result.next()) {
-                int id = result.getInt("id");
-                String name = result.getString("name");
-                double salary = result.getDouble("salary");
-                LocalDate start = result.getDate("start").toLocalDate();
-                employeePayrollList.add(new EmployeePayrollData(id, name, salary, start));
-            }
-        } catch (Exception e) {
             e.printStackTrace();
         }
         return employeePayrollList;

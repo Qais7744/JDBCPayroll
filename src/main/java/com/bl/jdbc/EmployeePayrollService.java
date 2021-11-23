@@ -36,10 +36,6 @@ public class EmployeePayrollService {
         return employeePayrollDataList.get(0).equals(getEmployeePayRollData(name));
     }
 
-    public List<EmployeePayrollData> readEmployeePayRollForDateRange(LocalDate startDate, LocalDate endDate) {
-        return employeePayrollDBService.getEmployeeForDateRange(startDate, endDate);
-    }
-
     public Map<String, Double> readAverageSalaryByGender() {
         return employeePayrollDBService.getAverageSalaryByGender();
     }

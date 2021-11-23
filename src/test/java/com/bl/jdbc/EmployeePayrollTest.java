@@ -3,7 +3,6 @@ package com.bl.jdbc;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ public class EmployeePayrollTest {
         List<EmployeePayrollData> employeePayrollData = employeePayrollService.readEmployeePayroll();
         for (EmployeePayrollData copy : employeePayrollData)
             System.out.println(copy);
-        Assert.assertEquals(3, employeePayrollData.size());
+        Assert.assertEquals(4, employeePayrollData.size());
     }
 
     @Test
@@ -39,7 +38,7 @@ public class EmployeePayrollTest {
         List<EmployeePayrollData> employeePayRollDBData = employeePayRollDBService.readEmployeePayRollForDateRange(startDate, endDate);
         for (EmployeePayrollData data : employeePayRollDBData)
             System.out.println(data);
-        Assert.assertEquals(2, employeePayRollDBData.size());
+        Assert.assertEquals(3, employeePayRollDBData.size());
     }
 
     @Test

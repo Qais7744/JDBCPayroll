@@ -31,10 +31,10 @@ public class EmployeePayrollData {
     @Override
     public String toString() {
         return "EmployeePayrollData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", salary=" + salary +
-                ", startDate=" + startDate +
+                "id = " + id +
+                ", name = '" + name + '\'' +
+                ", salary = " + salary +
+                ", startDate = " + startDate +
                 '}';
     }
 }
